@@ -124,7 +124,7 @@ class EnvAgent:
             #IncreaseProbability = Reward + gamma * MaxProbAction
             Target = Reward + self.Gamma*torch.max(Next, dim = 1)[0]
 
-            loss = self.PolicyNet.loss(Target, Output)
+            loss = self.PolicyNet.loss(Output, Target)
             loss.backward()
             self.PolicyNet.optim.step() 
             self.PolicyNet.sched.step()
